@@ -4,3 +4,8 @@
   stroke: #000;
   stroke-linecap: round;
 }
+
+.flow {
+  fill: green;
+  stroke-width: 0;
+}

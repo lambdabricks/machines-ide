@@ -6,7 +6,13 @@ var g_bezier_delta = g_delta * 3;
 // s.path(path).addClass("line");
 // s.path("M100,0 C100,150 350,50 350,200").addClass("line");
 
-sidePipe(s, 50, 50, 350, 200);
+var pipe = sidePipe(s, 50, 50, 350, 200);
+pipe.clone();
+
+var r = s.rect(40, 40, 380, 0).addClass("flow");
+r.attr({ mask: pipe });
+r.animate({ height: 220 }, 1000);
+
 
 function verticalPipe(snap, x, y, size) {
   var path = "M400,50h50v150h-50Z";
@@ -20,7 +26,7 @@ function sidePipe(snap, x1, y1, x2, y2) {
 
   // first curve
   var path = left_bezier_path(x1, y1, x2, y2) + right_bezier_path(x1, y1, x2, y2);
-  snap.path(path).addClass("line");
+  return snap.path(path).addClass("line");
 }
 
 function left_bezier_path(x1, y1, x2, y2) {
