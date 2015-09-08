@@ -1,0 +1,11 @@
+.line {
+  fill: lightgray;
+  stroke-width: 2;
+  stroke: #000;
+  stroke-linecap: round;
+}
+
+.flow {
+  fill: green;
+  stroke-width: 0;
+}
