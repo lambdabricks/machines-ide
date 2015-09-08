@@ -4,7 +4,7 @@ var function_node_height = pipe_width * 2;
 
 var x_main_input = 220;
 var y_main_input = 50;
-var separation = 80;
+var separation = 100;
 var function_height = function_node_height + (pipe_width * 2);
 var total_separation = (separation * 2) + function_height - pipe_width;
 
@@ -13,7 +13,21 @@ var main_output = s.rect(x_main_input, y_main_input + total_separation, pipe_wid
 
 var left_top_pipe = sidePipe(s, x_main_input, y_main_input + pipe_width, x_main_input - pipe_width, y_main_input + separation);
 var right_top_pipe = sidePipe(s, x_main_input, y_main_input + pipe_width, x_main_input + pipe_width, y_main_input + separation);
-var bottom_pipe = sidePipe(s, x_main_input, y_main_input + (separation * 2), x_main_input, y_main_input + total_separation);
+var top_group = s.group(left_top_pipe, right_top_pipe);
+top_group.clone();
+
+var top_flow = s.rect(x_main_input - pipe_width, y_main_input + pipe_width, pipe_width * 3, 0).addClass("flow");
+top_flow.attr({ mask: top_group});
+
+var bottom_pipe = sidePipe(s, x_main_input, y_main_input + separation + function_height, x_main_input, y_main_input + total_separation);
+bottom_pipe.clone();
+
+var bottom_flow = s.rect(x_main_input, y_main_input + separation + function_height, pipe_width, 0).addClass("flow2");
+bottom_flow.attr({ mask: bottom_pipe });
+
+top_flow.animate({ height: separation - pipe_width }, 1000, function() {
+  bottom_flow.animate({ height: separation - pipe_width }, 1000);
+});
 
 var multiplication = functionNode(s, x_main_input - (pipe_width * 2), y_main_input + separation, "*", 2, 1);
 
