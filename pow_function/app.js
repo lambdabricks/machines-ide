@@ -26,7 +26,9 @@ var bottom_flow = s.rect(x_main_input, y_main_input + separation + function_heig
 bottom_flow.attr({ mask: bottom_pipe });
 
 top_flow.animate({ height: separation - pipe_width }, 1000, function() {
-  bottom_flow.animate({ height: separation - pipe_width }, 1000);
+  setTimeout(function() {
+    bottom_flow.animate({ height: separation - pipe_width }, 1000);
+  }, 400);
 });
 
 var multiplication = functionNode(s, x_main_input - (pipe_width * 2), y_main_input + separation, "*", 2, 1);
