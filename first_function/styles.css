@@ -1,0 +1,28 @@
+rect {
+  fill: lightblue;
+}
+
+text {
+  font-size: 35px;
+}
+
+.input {
+  cursor: pointer;
+}
+
+.input:hover {
+  fill: #659BAD;
+}
+
+.output {
+  cursor: pointer;
+}
+
+.output:hover {
+  fill: #659BAD;
+}
+
+.function-outline {
+  fill: none;
+  stroke: black;
+}
