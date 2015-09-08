@@ -2,7 +2,7 @@ var s = Snap("#svgout");
 var pipe_width = 20;
 var function_node_height = pipe_width * 2;
 
-var pipe = function_node(s, 50, 50, "AND", 2, 1);
+var pipe = function_node(s, 50, 50, "&&", 2, 1);
 
 // Currently ignoring total of outputs
 function function_node(snap, x, y, name, total_inputs, total_outputs) {

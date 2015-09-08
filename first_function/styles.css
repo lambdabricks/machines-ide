@@ -4,6 +4,7 @@ rect {
 
 text {
   font-size: 35px;
+  font-family: monospace;
 }
 
 .input {
