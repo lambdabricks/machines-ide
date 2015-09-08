@@ -27,6 +27,8 @@ function function_node(snap, x, y, name, total_inputs, total_outputs) {
 
   var text = snap.text(x + (pipe_width / 2), y + function_node_height + pipe_width - 10, name).addClass("function_name");
   group.add(text);
+
+  group.drag();
 }
 
 function function_node_outline_path(x, y, total_inputs, total_outputs) {
