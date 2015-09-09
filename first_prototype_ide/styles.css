@@ -50,6 +50,10 @@ text {
   stroke: black;
 }
 
+.selected, .selected:hover {
+  fill: mediumspringgreen;
+}
+
 .flow {
   fill: lightsalmon;
 }

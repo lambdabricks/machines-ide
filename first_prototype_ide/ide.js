@@ -2,6 +2,8 @@ var pipe_width = 20;
 var function_node_height = pipe_width * 2;
 var anonymous_function_node_height = pipe_width * 20;
 
+var selected_input, selected_output;
+
 var Point = function(x, y) {
   this.x = x;
   this.y = y;
@@ -72,11 +74,27 @@ FunctionNode.prototype.draw = function() {
 
   for(var i = 0; i < this.total_inputs; i++) {
     var input = snap.rect(this.inputPoint(i), this.origin.y, this.pipe_width, this.pipe_width).addClass(this.nodeInputClass());
+    input.click(function() {
+      this.toggleClass('selected');
+      if(selected_input) {
+        selected_input.removeClass('selected');
+      }
+      selected_input = this.hasClass('selected') ? this : undefined;
+    });
+
     inputs.push(input);
     group.add(input);
   }
 
   var output = snap.rect(this.outputPoint(), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass(this.nodeOutputClass());
+  output.click(function() {
+    this.toggleClass('selected');
+    if(selected_output) {
+      selected_output.removeClass('selected');
+    }
+    selected_output = this.hasClass('selected') ? this : undefined;
+  });
+
   outputs.push(output);
   group.add(output);
 
