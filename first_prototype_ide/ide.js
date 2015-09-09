@@ -50,21 +50,33 @@ FunctionNode.prototype.inputPoint = function(index) {
   return this.origin.x + (this.pipe_width * ((index * multiplier) + offset));
 };
 
+FunctionNode.prototype.nodeBodyClass = function() {
+  return this.anonymous ? "main-body" : "body";
+}
+
+FunctionNode.prototype.nodeInputClass = function() {
+  return this.anonymous ? "main input" : "input";
+}
+
+FunctionNode.prototype.nodeOutputClass = function() {
+  return this.anonymous ? "main output" : "output";
+}
+
 FunctionNode.prototype.draw = function() {
   var snap = Snap("#svgout");
   var inputs = [];
   var outputs = [];
 
-  var body = snap.rect(this.origin.x, this.origin.y + this.pipe_width, this.function_node_width, this.function_node_height).addClass("body");
+  var body = snap.rect(this.origin.x, this.origin.y + this.pipe_width, this.function_node_width, this.function_node_height).addClass(this.nodeBodyClass());
   var group = snap.g(body);
 
   for(var i = 0; i < this.total_inputs; i++) {
-    var input = snap.rect(this.inputPoint(i), this.origin.y, this.pipe_width, this.pipe_width).addClass("input");
+    var input = snap.rect(this.inputPoint(i), this.origin.y, this.pipe_width, this.pipe_width).addClass(this.nodeInputClass());
     inputs.push(input);
     group.add(input);
   }
 
-  var output = snap.rect(this.outputPoint(), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass("output");
+  var output = snap.rect(this.outputPoint(), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass(this.nodeOutputClass());
   outputs.push(output);
   group.add(output);
 
