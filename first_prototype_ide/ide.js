@@ -9,11 +9,45 @@ var Point = function(x, y) {
 
 var FunctionNode = function(x, y, total_inputs, total_outputs, name) {
     this.pipe_width           = pipe_width;
-    this.function_node_height = name == undefined ? anonymous_function_node_height : function_node_height;
+    this.function_node_height = this.node_height();
+    this.function_node_width  = this.node_width();
     this.origin               = new Point(x, y);
     this.name                 = name;
     this.total_inputs         = total_inputs;
     this.total_outputs        = total_outputs;
+};
+
+FunctionNode.prototype.anonymous = function() {
+  return this.name == undefined;
+};
+
+FunctionNode.prototype.node_height = function() {
+  return this.anonymous ? anonymous_function_node_height : function_node_height;
+};
+
+FunctionNode.prototype.node_width = function() {
+  if(this.anonymous) {
+    return this.pipe_width * 13;
+  } else {
+    return this.pipe_width * (this.total_inputs * 2 + 1);
+  }
+};
+
+FunctionNode.prototype.outputPoint = function() {
+  return this.origin.x + ((this.function_node_width - this.pipe_width) / 2);
+};
+
+FunctionNode.prototype.inputPoint = function(index) {
+  var multiplier = 2;
+  var offset     = 1;
+
+  if(this.anonymous) {
+    multiplier = 4;
+    offset     = 0;
+    index++;
+  }
+
+  return this.origin.x + (this.pipe_width * ((index * multiplier) + offset));
 };
 
 FunctionNode.prototype.draw = function() {
@@ -21,23 +55,25 @@ FunctionNode.prototype.draw = function() {
   var inputs = [];
   var outputs = [];
 
-  var body = snap.rect(this.origin.x, this.origin.y + this.pipe_width, this.pipe_width * (this.total_inputs * 2 + 1), this.function_node_height).addClass("body");
+  var body = snap.rect(this.origin.x, this.origin.y + this.pipe_width, this.function_node_width, this.function_node_height).addClass("body");
   var group = snap.g(body);
 
   for(var i = 0; i < this.total_inputs; i++) {
-    var input = snap.rect(this.origin.x + (this.pipe_width * (i * 2 + 1)), this.origin.y, this.pipe_width, this.pipe_width).addClass("input");
+    var input = snap.rect(this.inputPoint(i), this.origin.y, this.pipe_width, this.pipe_width).addClass("input");
     inputs.push(input);
     group.add(input);
   }
 
-  var output = snap.rect(this.origin.x + (this.pipe_width * this.total_inputs), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass("output");
+  var output = snap.rect(this.outputPoint(), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass("output");
   outputs.push(output);
   group.add(output);
 
-  var outline = snap.path(this.functionNodeOutlinePath(this.origin.x, this.origin.y, this.total_inputs, this.total_outputs)).addClass("function-outline");
-  group.add(outline);
+  if(! this.anonymous) {
+    var outline = snap.path(this.functionNodeOutlinePath()).addClass("function-outline");
+    group.add(outline);
+  }
 
-  if(name) {
+  if(! this.anonymous) {
     var text = snap.text(this.origin.x + (this.pipe_width / 2), this.origin.y + this.function_node_height + this.pipe_width - 10, this.name).addClass("function_name");
     group.add(text);
   }
