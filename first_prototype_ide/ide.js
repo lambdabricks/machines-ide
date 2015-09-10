@@ -174,11 +174,18 @@ PipeNode.prototype.draw = function() {
   var input_bbox  = this.input_element.getBBox();
   var output_bbox = this.output_element.getBBox();
 
-  var path = "M" + input_bbox.x + "," + (input_bbox.y2 + 1);
+  var path = "M" + absolutePosition(this.input_element).x + "," + (absolutePosition(this.input_element).y + input_bbox.height + 1);
   path += "h" + input_bbox.width;
-  path += "L" + output_bbox.x2 + "," + (output_bbox.y - 1);
+  path += "L" + (absolutePosition(this.output_element).x + output_bbox.width) + "," + (absolutePosition(this.output_element).y - 1);
   path += "h" + (-output_bbox.width);
   path += "Z";
 
   return snap.path(path).addClass("pipe");
 };
+
+function absolutePosition(element) {
+  globalMatrix = element.transform().globalMatrix;
+  bbox = element.getBBox();
+
+  return new Point(globalMatrix.x(bbox.x, bbox.y), globalMatrix.y(bbox.x, bbox.y));
+}
