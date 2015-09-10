@@ -75,11 +75,19 @@ FunctionNode.prototype.draw = function() {
   for(var i = 0; i < this.total_inputs; i++) {
     var input = snap.rect(this.inputPoint(i), this.origin.y, this.pipe_width, this.pipe_width).addClass(this.nodeInputClass());
     input.click(function() {
-      this.toggleClass('selected');
-      if(selected_input) {
+      if(selected_input && selected_input != this) {
         selected_input.removeClass('selected');
       }
-      selected_input = this.hasClass('selected') ? this : undefined;
+
+      if(selected_output) {
+        new PipeNode(this, selected_output).draw();
+        selected_output.removeClass('selected');
+        selected_output = undefined;
+        selected_input = undefined;
+      } else {
+        this.toggleClass('selected');
+        selected_input = this.hasClass('selected') ? this : undefined;
+      }
     });
 
     inputs.push(input);
@@ -88,11 +96,19 @@ FunctionNode.prototype.draw = function() {
 
   var output = snap.rect(this.outputPoint(), this.origin.y + this.pipe_width + this.function_node_height, this.pipe_width, this.pipe_width).addClass(this.nodeOutputClass());
   output.click(function() {
-    this.toggleClass('selected');
-    if(selected_output) {
+    if(selected_output && selected_output != this) {
       selected_output.removeClass('selected');
     }
-    selected_output = this.hasClass('selected') ? this : undefined;
+
+    if(selected_input) {
+      new PipeNode(selected_input, this).draw();
+      selected_input.removeClass('selected');
+      selected_input = undefined;
+      selected_output = undefined;
+    } else {
+      this.toggleClass('selected');
+      selected_output = this.hasClass('selected') ? this : undefined;
+    }
   });
 
   outputs.push(output);
@@ -146,9 +162,23 @@ FunctionNode.prototype.outputPoints = function() {
     this.origin.y + this.pipe_width + this.function_node_height));
 
   return output_points;
-}
+};
 
-var PipeNode = function(input_point, output_point) {
-  this.input_point  = input_point;
-  this.output_point = output_point;
+var PipeNode = function(input_element, output_element) {
+  this.input_element  = input_element;
+  this.output_element = output_element;
+};
+
+PipeNode.prototype.draw = function() {
+  var snap = Snap("#svgout");
+  var input_bbox  = this.input_element.getBBox();
+  var output_bbox = this.output_element.getBBox();
+
+  var path = "M" + input_bbox.x + "," + (input_bbox.y2 + 1);
+  path += "h" + input_bbox.width;
+  path += "L" + output_bbox.x2 + "," + (output_bbox.y - 1);
+  path += "h" + (-output_bbox.width);
+  path += "Z";
+
+  return snap.path(path).addClass("pipe");
 };
