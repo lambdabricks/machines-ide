@@ -1,5 +1,5 @@
 svg {
-  background-color: lightslategray;
+  background-color: #bfbfbf;
 }
 
 rect {
@@ -32,17 +32,17 @@ text {
 }
 
 .main-body {
-  fill: #bfbfbf;
+  fill: lightslategray;
   stroke: black;
 }
 
 .main {
-  fill: #bfbfbf;
+  fill: lightslategray;
   stroke: black;
 }
 
 .main:hover {
-  fill: #868686;
+  fill: #385661;
 }
 
 .function-outline {
