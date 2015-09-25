@@ -15,3 +15,18 @@ $('.panel-group').on('click', '.add-function', function() {
 
   new FunctionNode(50, 50, function_signature.inputs, function_signature.outputs, function_signature.name).draw();
 });
+
+$('#svgout').on('click', '*', function(event){
+  var elements_with_actions = ['body', 'main-body', 'pipe'];
+  var targetClass = $(event.target).attr('class');
+  event.stopPropagation();
+
+  if(elements_with_actions.indexOf(targetClass) > -1) {
+    $('.actions').hide();
+    $('#' + targetClass + '-actions').show();
+  }
+});
+
+$(function(){
+  $('.actions').hide();
+});
