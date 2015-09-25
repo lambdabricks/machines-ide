@@ -62,3 +62,7 @@ text {
 .flow2 {
   fill: lightseagreen;
 }
+
+.primitive-string {
+  fill: blueviolet;
+}

@@ -17,7 +17,7 @@ $('.panel-group').on('click', '.add-function', function() {
 });
 
 $('#svgout').on('click', '*', function(event){
-  var elements_with_actions = ['body', 'main-body', 'pipe'];
+  var elements_with_actions = ['body', 'main-body', 'pipe', 'primitive-string'];
   var targetClass = $(event.target).attr('class');
   event.stopPropagation();
 
