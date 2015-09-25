@@ -10,35 +10,195 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-4">
-          <div class="row">
-            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#createFunctionModal">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-          </div>
+        <div class="col-md-3">
           <div class="row">
             <div class="panel-group" role="tablist">
               <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="booleanLogicModuleHeading">
+                <div class="panel-heading" role="tab" id="PrimitivesModuleHeading">
                   <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" href="#booleanLogicModule" aria-expanded="false" aria-controls="booleanLogicModule">
-                      Boolean Logic
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#PrimitivesModule" aria-expanded="false" aria-controls="PrimitivesModule">
+                      Primitives
                     </a>
                   </h4>
                 </div>
-                <div id="booleanLogicModule" class="panel-collapse collapse" role="tabpanel" aria-labelledby="booleanLogicModuleHeading" aria-expanded="false" style="height: 0px;">
+                <div id="PrimitivesModule" class="panel-collapse collapse" role="tabpanel" aria-labelledby="PrimitivesModuleHeading" aria-expanded="false" style="height: 0px;">
                   <div class="list-group">
-                    <a href="#" class="list-group-item add-function" data-name="&&">&&</a>
-                    <a href="#" class="list-group-item add-function" data-name="||">||</a>
-                    <a href="#" class="list-group-item add-function" data-name="!">!</a>
+                    <a href="#" class="list-group-item add-function" data-name="atom">atom</a>
+                    <a href="#" class="list-group-item add-function" data-name="boolean">boolean</a>
+                    <a href="#" class="list-group-item add-function" data-name="list">list</a>
+                    <a href="#" class="list-group-item add-function" data-name="number">number</a>
+                    <a href="#" class="list-group-item add-function" data-name="string">string</a>
+                    <a href="#" class="list-group-item add-function" data-name="tuple">tuple</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Functions</h2>
+            <div class="panel-group" role="tablist">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="EnumModuleHeading">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#EnumModule" aria-expanded="false" aria-controls="EnumModule">
+                      Enum
+                    </a>
+                  </h4>
+                </div>
+                <div id="EnumModule" class="panel-collapse collapse" role="tabpanel" aria-labelledby="EnumModuleHeading" aria-expanded="false" style="height: 0px;">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item add-function" data-name="filter">filter</a>
+                    <a href="#" class="list-group-item add-function" data-name="map">map</a>
+                    <a href="#" class="list-group-item add-function" data-name="reduce">reduce</a>
+                    <a href="#" class="list-group-item add-function" data-name="sort">sort</a>
+                    <a href="#" class="list-group-item add-function" data-name="zip">zip</a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="KernelModuleHeading">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#KernelModule" aria-expanded="false" aria-controls="KernelModule">
+                      Kernel
+                    </a>
+                  </h4>
+                </div>
+                <div id="KernelModule" class="panel-collapse collapse" role="tabpanel" aria-labelledby="KernelModuleHeading" aria-expanded="false" style="height: 0px;">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item add-function" data-name="==">==</a>
+                    <a href="#" class="list-group-item add-function" data-name="!=">!=</a>
+                    <a href="#" class="list-group-item add-function" data-name="<">&lt;</a>
+                    <a href="#" class="list-group-item add-function" data-name=">">&gt;</a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="StringModuleHeading">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" href="#StringModule" aria-expanded="false" aria-controls="StringModule">
+                      String
+                    </a>
+                  </h4>
+                </div>
+                <div id="StringModule" class="panel-collapse collapse" role="tabpanel" aria-labelledby="StringModuleHeading" aria-expanded="false" style="height: 0px;">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item add-function" data-name="length">length</a>
+                    <a href="#" class="list-group-item add-function" data-name="reverse">reverse</a>
+                    <a href="#" class="list-group-item add-function" data-name="split">split</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <svg id="svgout" width="100%" height="700px"></svg>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <div class="btn-group" role="group" aria-label="">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-info">
+                <div class="panel-body">
+                  <div class="btn-group pipe" role="group" aria-label="">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createFunctionModal">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <svg id="svgout" width="100%" height="600px">
+                <g transform="matrix(1,0,0,1,0,0)">
+                  <rect x="100" y="70" width="260" height="400" class="main-body"></rect>
+                  <rect x="180" y="50" width="20" height="20" class="main input"></rect>
+                  <rect x="260" y="50" width="20" height="20" class="main input"></rect>
+                  <rect x="220" y="470" width="20" height="20" class="main output"></rect>
+                </g>
+                <g transform="matrix(1,0,0,1,74,75)">
+                  <rect x="50" y="70" width="100" height="40" class="body"></rect>
+                  <rect x="70" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="110" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="90" y="110" width="20" height="20" class="output"></rect>
+                  <path d="M50,70h20v-20h20v20h20v-20h20v20h20v40h-40v20h-20v-20h-40Z" class="function-outline"></path>
+                  <text x="60" y="100" class="function_name">split</text>
+                </g>
+                <g transform="matrix(1,0,0,1,192,74)">
+                  <rect x="50" y="70" width="100" height="40" class="body"></rect>
+                  <rect x="70" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="110" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="90" y="110" width="20" height="20" class="output"></rect>
+                  <path d="M50,70h20v-20h20v20h20v-20h20v20h20v40h-40v20h-20v-20h-40Z" class="function-outline"></path>
+                  <text x="60" y="100" class="function_name">split</text>
+                </g>
+                <g transform="matrix(1,0,0,1,130,313)">
+                  <rect x="50" y="70" width="100" height="40" class="body"></rect>
+                  <rect x="70" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="110" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="90" y="110" width="20" height="20" class="output"></rect>
+                  <path d="M50,70h20v-20h20v20h20v-20h20v20h20v40h-40v20h-20v-20h-40Z" class="function-outline"></path>
+                  <text x="60" y="100" class="function_name">==</text>
+                </g>
+                <g transform="matrix(1,0,0,1,95,177)">
+                  <rect x="50" y="70" width="60" height="40" class="body"></rect>
+                  <rect x="70" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="70" y="110" width="20" height="20" class="output"></rect>
+                  <path d="M50,70h20v-20h20v20h20v40h-20v20h-20v-20h-20Z" class="function-outline"></path>
+                  <text x="60" y="100" class="function_name">sort</text>
+                </g>
+                <g transform="matrix(1,0,0,1,212,177)">
+                  <rect x="50" y="70" width="60" height="40" class="body"></rect>
+                  <rect x="70" y="50" width="20" height="20" class="input"></rect>
+                  <rect x="70" y="110" width="20" height="20" class="output"></rect>
+                  <path d="M50,70h20v-20h20v20h20v40h-20v20h-20v-20h-20Z" class="function-outline"></path>
+                  <text x="60" y="100" class="function_name">sort</text>
+                </g>
+                <path d="M180,71h20L164,124h-20Z" class="pipe"></path>
+                <path d="M260,71h20L282,123h-20Z" class="pipe"></path>
+                <path d="M282,205h20L302,226h-20Z" class="pipe"></path>
+                <path d="M164,206h20L185,226h-20Z" class="pipe"></path>
+                <path d="M165,308h20L220,362h-20Z" class="pipe"></path>
+                <path d="M282,308h20L260,362h-20Z" class="pipe"></path>
+                <path d="M220,444h20L240,469h-20Z" class="pipe"></path>
+              </svg>
+            </div>
+            <div class="col-md-6">
+              <pre style="height: 770px;">
+                def anonymous1(word1, word2) do
+                  words1 = String.split(word1, " ")
+                  |> Enum.sort
+                  words2 = String.split(word2, " ")
+                  |> Enum.sort
+
+                  words1 == words2
+                end
+              </pre>
+            </div>
+          </div>
         </div>
       </div>
     </div>
